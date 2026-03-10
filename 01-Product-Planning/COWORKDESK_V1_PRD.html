@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoworkDesk v1 PRD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            border-bottom: 3px solid #1890ff;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #1890ff;
+            margin-bottom: 10px;
+        }
+
+        .version {
+            display: inline-block;
+            background: #1890ff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #262626;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #595959;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #8c8c8c;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fafafa;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid #e8e8e8;
+        }
+
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            color: #262626;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 13px;
+            color: #d63384;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-left: 4px solid #1890ff;
+            padding-left: 16px;
+            margin: 20px 0;
+            color: #666;
+            background: #f0f7ff;
+            padding: 12px 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+
+        .tag-done {
+            background: #52c41a;
+            color: white;
+        }
+
+        .tag-todo {
+            background: #ff4d4f;
+            color: white;
+        }
+
+        .status-box {
+            background: #f0f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 16px;
+            margin: 20px 0;
+        }
+
+        .status-box h4 {
+            color: #1890ff;
+            margin-top: 0;
+        }
+
+        .architecture {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .feature-card h4 {
+            color: #1890ff;
+            margin-bottom: 10px;
+        }
+
+        .toc {
+            background: #f9f9f9;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #1890ff;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #1890ff;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CoworkDesk v1 Product Requirements Document (PRD)</h1>
+            <span class="version">版本: v1.0.4</span>
+            <div class="meta">
+                <p><strong>发布日期:</strong> 2026-02-24</p>
+                <p><strong>状态:</strong> 已发布</p>
+            </div>
+        </header>
+
+        <nav class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#1-产品概述">1. 产品概述</a></li>
+                <li><a href="#2-功能规格">2. 功能规格</a></li>
+                <li><a href="#3-技术架构">3. 技术架构</a></li>
+                <li><a href="#4-用户流程">4. 用户流程</a></li>
+                <li><a href="#5-安全与隐私">5. 安全与隐私</a></li>
+                <li><a href="#6-已知限制">6. 已知限制</a></li>
+                <li><a href="#7-质量保证">7. 质量保证</a></li>
+                <li><a href="#8-发布历史">8. 发布历史</a></li>
+                <li><a href="#9-设计决策记录">9. 设计决策记录 (ADR)</a></li>
+                <li><a href="#10-后续规划-v2">10. 后续规划 (v2)</a></li>
+                <li><a href="#11-附录">11. 附录</a></li>
+            </ul>
+        </nav>
+
+        <h2 id="1-产品概述">1. 产品概述</h2>
+
+        <h3 id="11-产品定位">1.1 产品定位</h3>
+        <p>CoworkDesk 是一个面向 OpenClaw 重度用户的 macOS 原生桌面 AI 协作平台，通过 WebSocket 连接 OpenClaw Gateway，提供：</p>
+        <ul>
+            <li>智能对话（多模型切换、流式响应、tool calling）</li>
+            <li>多会话管理（创建、搜索、归档、删除）</li>
+            <li>会话级 token 统计与成本追踪</li>
+            <li>Skills / MCP 插件生态管理</li>
+            <li>IM 频道集成（飞书、Telegram、Discord、Slack 等）</li>
+            <li>会话导出与导入</li>
+            <li>多主题皮肤系统（Raycast、Dracula、Neon Noir、Nord、Monokai）</li>
+        </ul>
+
+        <h3 id="12-目标用户">1.2 目标用户</h3>
+        <ul>
+            <li><strong>主要用户:</strong> OpenClaw 重度用户、开发者、技术团队</li>
+            <li><strong>使用场景:</strong> 日常编程辅助、文档分析、任务自动化、跨平台消息路由</li>
+            <li><strong>技能水平:</strong> 中高级用户，熟悉命令行和 AI 工具</li>
+        </ul>
+
+        <h3 id="13-核心价值主张">1.3 核心价值主张</h3>
+        <ol>
+            <li><strong>原生体验:</strong> macOS 原生 UI，性能优于 Web 版本</li>
+            <li><strong>会话持久化:</strong> 本地会话管理 + Gateway 同步，永不丢失对话历史</li>
+            <li><strong>多模型无缝切换:</strong> 顶部快捷切换，支持智谱、MiniMax、Claude、GPT 等</li>
+            <li><strong>可视化透明度:</strong> Tool calls 内联展示、实时 Activity timeline、Artifacts 追踪</li>
+            <li><strong>跨频道整合:</strong> 一个界面管理多个 IM 频道，统一 AI 助手体验</li>
+        </ol>
+
+        <h2 id="2-功能规格">2. 功能规格</h2>
+
+        <h3 id="21-chat-对话模块">2.1 Chat 对话模块</h3>
+
+        <h4 id="211-核心对话功能">2.1.1 核心对话功能</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>支持 Markdown 渲染的流式响应</li>
+            <li>Tool calls 内联展示为可折叠卡片</li>
+            <li>实时 streaming cursor 指示 AI 工作状态</li>
+            <li>消息气泡显示模型标签（切换后自动更新）</li>
+            <li>代码块语法高亮 + 一键复制 + 20+ 语言专属颜色标签</li>
+            <li>数学公式渲染（KaTeX 支持）</li>
+        </ul>
+
+        <p><strong>技术实现:</strong></p>
+        <ul>
+            <li><code>ChatPanel/index.tsx</code> - 主聊天面板</li>
+            <li><code>MessageItem.tsx</code> - 消息组件，支持流式更新</li>
+            <li><code>ChatInput.tsx</code> - 输入框，支持多行、自动扩展（168px 上限）</li>
+            <li><code>StreamingCursor.tsx</code> - 动态光标组件</li>
+            <li><code>CodeBlock.tsx</code> - 代码块组件，集成 rehype-highlight + KaTeX</li>
+            <li><code>ToolCallBlock.tsx</code> - Tool call 卡片，20+ 语义化图标映射</li>
+        </ul>
+
+        <div class="status-box">
+            <h4>验收标准:</h4>
+            <ul>
+                <li>✓ 消息发送后在 100ms 内开始流式输出</li>
+                <li>✓ Tool calls 展示包含图标、工具名称、耗时、状态</li>
+                <li>✓ 代码块支持 20+ 语言语法高亮</li>
+                <li>✓ 数学公式正确渲染（行内 + 块级）</li>
+            </ul>
+        </div>
+
+        <h4 id="212-stop-按钮与请求取消">2.1.2 Stop 按钮与请求取消</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>流式输出时，输入框按钮自动变为 Stop</li>
+            <li>点击 Stop 立即中断当前请求</li>
+            <li>500ms 内反馈"已停止"状态</li>
+        </ul>
+
+        <h3 id="22-会话管理模块">2.2 会话管理模块</h3>
+
+        <h4 id="221-多会话系统">2.2.1 多会话系统</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>左侧 SessionSidebar 显示所有会话列表</li>
+            <li>支持新建、重命名、删除会话</li>
+            <li>会话搜索（按标题、最近内容）</li>
+            <li>会话归档与置顶（Pin）</li>
+            <li>会话导出（Markdown / JSON 格式）</li>
+            <li>批量操作（删除多个会话）</li>
+        </ul>
+
+        <div class="status-box">
+            <h4>验收标准:</h4>
+            <ul>
+                <li>✓ 20+ 会话下首屏检索 < 200ms</li>
+                <li>✓ 搜索支持中文、英文、混合查询</li>
+                <li>✓ 删除会话后不再出现在列表</li>
+                <li>✓ 导出 Markdown 格式可完整保留对话历史</li>
+                <li>✓ Pin 的会话固定在列表顶部</li>
+            </ul>
+        </div>
+
+        <h4 id="222-会话删除与恢复">2.2.2 会话删除与恢复</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>删除会话后，新消息可以自动恢复该会话</li>
+            <li>删除后 1 秒内恢复（grace period）</li>
+            <li>恢复后保留历史消息</li>
+        </ul>
+
+        <h3 id="23-gateway-连接模块">2.3 Gateway 连接模块</h3>
+
+        <h4 id="231-websocket-连接">2.3.1 WebSocket 连接</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>自动连接到 <code>ws://127.0.0.1:18789</code>（默认）</li>
+            <li>支持 challenge-response 握手（ED25519 签名）</li>
+            <li>指数退避重连（1.5x factor，最大 30s，最多 20 次）</li>
+            <li>连接状态可视化（绿色脉冲 = connected，黄色 = connecting，红色 = error）</li>
+            <li>实时 ping 延迟显示</li>
+        </ul>
+
+        <h4 id="232-gateway-manager">2.3.2 Gateway Manager</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>内置 openclaw gateway 子进程管理</li>
+            <li>自动启停 gateway</li>
+            <li>Gateway 崩溃时自动重启</li>
+            <li>导入 <code>~/.openclaw</code> 配置</li>
+        </ul>
+
+        <h3 id="24-模型与-provider-管理">2.4 模型与 Provider 管理</h3>
+
+        <h4 id="241-顶部模型选择器">2.4.1 顶部模型选择器</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>顶部导航栏中央显示当前模型</li>
+            <li>点击展开模型下拉菜单</li>
+            <li>实时切换模型，无需重启应用</li>
+            <li>显示模型价格（$ input / output per 1M tokens）</li>
+            <li>Rate limit 状态显示（Limited Xs 芯片）</li>
+        </ul>
+
+        <p><strong>预置模型:</strong></p>
+        <ul>
+            <li>智谱: GLM-4.7、GLM-4.7-Flash、GLM-5</li>
+            <li>MiniMax: M2.5</li>
+            <li>Anthropic: Claude 3.5 Sonnet、Claude Opus 4.6</li>
+            <li>OpenAI: GPT-4o</li>
+            <li>自定义: 支持用户添加任意 provider</li>
+        </ul>
+
+        <h4 id="242-多-provider-支持">2.4.2 多 Provider 支持</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>支持 6+ provider：智谱、MiniMax、Anthropic、OpenAI、Ollama、自定义</li>
+            <li>每个独立配置 API Key、Base URL</li>
+            <li>自动路由到正确的 provider</li>
+        </ul>
+
+        <h3 id="25-token-统计与成本追踪">2.5 Token 统计与成本追踪</h3>
+
+        <h4 id="251-会话级-token-统计">2.5.1 会话级 Token 统计</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>左侧 SessionSidebar 显示每个会话的：
+                <ul>
+                    <li>Total tokens</li>
+                    <li>Estimated cost（USD）</li>
+                </ul>
+            </li>
+            <li>Token 数据从 Gateway usage events 采集</li>
+            <li>成本计算基于 <code>MODEL_PRICING</code> 常量表</li>
+        </ul>
+
+        <div class="status-box">
+            <h4>验收标准:</h4>
+            <ul>
+                <li>✓ Token 统计误差 < 2%</li>
+                <li>✓ 成本计算与 Gateway 一致</li>
+                <li>✓ 数据实时更新（每次对话后）</li>
+            </ul>
+        </div>
+
+        <h3 id="26-skills-管理">2.6 Skills 管理</h3>
+
+        <h4 id="261-skills-library">2.6.1 Skills Library</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>右侧 ContextSidebar 显示已安装的 skills</li>
+            <li>支持 skill 启用/禁用（toggle switch）</li>
+            <li>显示 skill 描述和图标</li>
+            <li>点击 skill 显示详情</li>
+        </ul>
+
+        <h3 id="27-mcp-服务器管理">2.7 MCP 服务器管理</h3>
+
+        <h4 id="271-mcp-servers-配置">2.7.1 MCP Servers 配置</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>Settings > MCP tab 显示已配置的 MCP servers</li>
+            <li>支持添加、删除、配置 MCP servers</li>
+            <li>显示 server 状态（Connected / Disconnected / Needs Auth）</li>
+            <li>支持 stdio 和 HTTP 两种连接方式</li>
+        </ul>
+
+        <h3 id="28-im-频道集成">2.8 IM 频道集成</h3>
+
+        <h4 id="281-多频道支持">2.8.1 多频道支持</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>支持飞书、Telegram、Discord、Slack、Signal、Google Chat、IRC 等频道</li>
+            <li>每个频道自动创建独立 session</li>
+            <li>顶部导航栏显示配置的频道数量</li>
+            <li>点击频道图标跳转到 Settings > Channels</li>
+        </ul>
+
+        <p><strong>频道分类:</strong></p>
+        <ul>
+            <li><strong>DM (Direct Message):</strong> 一对一对话（如飞书私聊）</li>
+            <li><strong>Group:</strong> 群聊</li>
+            <li><strong>Channel:</strong> 频道</li>
+        </ul>
+
+        <h4 id="282-会话路由与-dmscope">2.8.2 会话路由与 dmScope</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>IM 频道会话自动分配独立的 session key（如 <code>agent:main:feishu:direct:ou_xxx</code>）</li>
+            <li>支持从会话中提取 dmScope（per-channel-peer）</li>
+            <li>删除后新消息自动恢复</li>
+        </ul>
+
+        <h3 id="29-artifacts-追踪">2.9 Artifacts 追踪</h3>
+
+        <h4 id="291-文件写入追踪">2.9.1 文件写入追踪</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>右侧 ContextSidebar 的 Artifacts tab 显示所有 Write/Edit 工具产生的文件</li>
+            <li>点击文件用系统默认程序打开</li>
+            <li>宽松匹配识别（不依赖 tool name 白名单）</li>
+        </ul>
+
+        <h3 id="210-主题系统">2.10 主题系统</h3>
+
+        <h4 id="2101-多主题支持">2.10.1 多主题支持</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>5 套完整主题：Raycast、Dracula、Neon Noir、Nord、Monokai</li>
+            <li>每套主题包含：
+                <ul>
+                    <li>完整的 CSS 变量映射（<code>--bg</code>、<code>--text-pri</code>、<code>--accent1</code> 等）</li>
+                    <li>专属光晕效果（ambient lighting）</li>
+                    <li>阴影变量（<code>--shadow-sm</code>、<code>--shadow-float</code>）</li>
+                </ul>
+            </li>
+            <li>实时切换主题</li>
+        </ul>
+
+        <h3 id="211-导出与导入">2.11 导出与导入</h3>
+
+        <h4 id="211-会话导出">2.11.1 会话导出</h4>
+        <p><strong>功能描述:</strong></p>
+        <ul>
+            <li>支持 Markdown 和 JSON 两种格式导出</li>
+            <li>批量导出多个会话</li>
+            <li>导出文件包含完整对话历史、tool calls、元数据</li>
+        </ul>
+
+        <h2 id="3-技术架构">3. 技术架构</h2>
+
+        <h3 id="31-进程架构">3.1 进程架构</h3>
+
+        <div class="architecture">
+┌─────────────────────────────────────────────────────┐
+│ Renderer Process (React)                            │
+│  ├── stores/ (Zustand)                              │
+│  │   ├── settingsStore.ts                           │
+│  │   ├── sessionStore.ts                            │
+│  │   ├── gatewayStore.ts                            │
+│  │   └── chatStore.ts                              │
+│  ├── panels/  (布局面板)                             │
+│  │   ├── ChatPanel/index.tsx                        │
+│  │   ├── SessionSidebar/index.tsx                   │
+│  │   └── ContextSidebar/index.tsx                    │
+│  ├── components/ (可复用组件)                        │
+│  │   ├── MessageItem.tsx                            │
+│  │   ├── ChatInput.tsx                              │
+│  │   ├── ToolCallBlock.tsx                          │
+│  │   └── CodeBlock.tsx                              │
+│  └── views/  (视图)                                  │
+│      └── SettingsView.tsx                            │
+├─────────────────────────────────────────────────────┤
+│ Preload (contextBridge)                             │
+│  ├── 暴露最小化 API                                  │
+│  └── 无 raw Node 泄露                               │
+├─────────────────────────────────────────────────────┤
+│ Main Process (Node.js)                              │
+│  ├── gateway/client.ts  (WebSocket → OpenClaw)      │
+│  ├── gateway/manager.ts (子进程管理)                  │
+│  ├── ipc.ts             (IPC handler 注册)          │
+│  └── store/settings.ts  (持久化设置)                 │
+├─────────────────────────────────────────────────────┤
+│ OpenClaw Gateway (ws://127.0.0.1:18789)             │
+│  ├── chat.send / chat.stop RPCs                       │
+│  ├── skills.list / skills.toggle RPCs                 │
+│  ├── mcp.list / mcp.add RPCs                         │
+│  └── IM channel plugin system                        │
+└─────────────────────────────────────────────────────┘
+        </div>
+
+        <h3 id="32-技术栈">3.2 技术栈</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>类别</th>
+                    <th>技术</th>
+                    <th>版本</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Runtime</td>
+                    <td>Electron</td>
+                    <td>33.4.0</td>
+                </tr>
+                <tr>
+                    <td>Node</td>
+                    <td>Node.js</td>
+                    <td>20.x</td>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>React</td>
+                    <td>19.0.0</td>
+                </tr>
+                <tr>
+                    <td>UI Library</td>
+                    <td>Ant Design</td>
+                    <td>5.24.1</td>
+                </tr>
+                <tr>
+                    <td>State Management</td>
+                    <td>Zustand</td>
+                    <td>5.0.3</td>
+                </tr>
+                <tr>
+                    <td>Build Tool</td>
+                    <td>electron-vite</td>
+                    <td>5.0.0</td>
+                </tr>
+                <tr>
+                    <td>WebSocket</td>
+                    <td>ws</td>
+                    <td>8.18.0</td>
+                </tr>
+                <tr>
+                    <td>Markdown</td>
+                    <td>react-markdown</td>
+                    <td>9.0.3</td>
+                </tr>
+                <tr>
+                    <td>Code Highlight</td>
+                    <td>rehype-highlight</td>
+                    <td>7.0.2</td>
+                </tr>
+                <tr>
+                    <td>Math Rendering</td>
+                    <td>KaTeX</td>
+                    <td>0.16.33</td>
+                </tr>
+                <tr>
+                    <td>Icons</td>
+                    <td>lucide-react</td>
+                    <td>0.575.0</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>better-sqlite3</td>
+                    <td>11.8.0</td>
+                </tr>
+                <tr>
+                    <td>File Watcher</td>
+                    <td>chokidar</td>
+                    <td>4.0.3</td>
+                </tr>
+                <tr>
+                    <td>Terminal</td>
+                    <td>xterm</td>
+                    <td>5.3.0</td>
+                </tr>
+                <tr>
+                    <td>Type System</td>
+                    <td>TypeScript</td>
+                    <td>5.7.3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="33-数据持久化">3.3 数据持久化</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>数据</th>
+                    <th>存储位置</th>
+                    <th>用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>用户设置</td>
+                    <td><code>~/.openclaw-autoclaw/settings.json</code></td>
+                    <td>主题、模型配置、快捷键</td>
+                </tr>
+                <tr>
+                    <td>本地会话</td>
+                    <td><code>~/.openclaw-autoclaw/sessions.json</code></td>
+                    <td>会话元数据、重命名、归档</td>
+                </tr>
+                <tr>
+                    <td>Gateway 配置</td>
+                    <td><code>~/.openclaw/config.json</code></td>
+                    <td>Provider keys、模型 catalog</td>
+                </tr>
+                <tr>
+                    <td>Skills 配置</td>
+                    <td><code>.opencode/config.json</code></td>
+                    <td>已安装 skills 列表</td>
+                </tr>
+                <tr>
+                    <td>MCP 配置</td>
+                    <td><code>.opencode/config.json</code></td>
+                    <td>MCP servers 配置</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="4-用户流程">4. 用户流程</h2>
+
+        <h3 id="41-首次启动流程">4.1 首次启动流程</h3>
+
+        <ol>
+            <li>打开 AutoClaw
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>检测 Gateway 连接状态
+                <ul>
+                    <li>Gateway 未运行 → 显示错误提示 + "启动 Gateway" 按钮</li>
+                    <li>Gateway 已运行 → 自动连接（ws://127.0.0.1:18789）
+                        <ul>
+                            <li>↓</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>连接成功
+                <ul>
+                    <li>显示欢迎界面（Main Thread 空状态）</li>
+                    <li>自动加载会话列表</li>
+                    <li>加载 Skills 列表</li>
+                    <li>加载 MCP servers 列表
+                        <ul>
+                            <li>↓</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>用户开始对话</li>
+        </ol>
+
+        <h3 id="42-切换模型流程">4.2 切换模型流程</h3>
+
+        <ol>
+            <li>点击顶部模型选择器
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>展开模型下拉菜单
+                <ul>
+                    <li>显示所有配置的模型</li>
+                    <li>显示价格信息</li>
+                    <li>显示当前选中状态
+                        <ul>
+                            <li>↓</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>点击目标模型
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>显示 loading 状态 "Switching..."
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>推送新模型配置到 Gateway
+                <ul>
+                    <li>Gateway 重启</li>
+                    <li>等待重连完成
+                        <ul>
+                            <li>↓</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>显示成功 toast "Model switched to XXX"
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>继续当前对话（使用新模型）</li>
+        </ol>
+
+        <h3 id="43-创建新会话流程">4.3 创建新会话流程</h3>
+
+        <ol>
+            <li>点击左侧 "+ New Chat" 按钮（或 Cmd+N）
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>创建新的 session key（随机生成）
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>切换到新会话（activeSessionKey 更新）
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>显示空状态 "Main Thread" + "Describe your objective..."
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>用户开始输入</li>
+        </ol>
+
+        <h3 id="44-删除会话流程">4.4 删除会话流程</h3>
+
+        <ol>
+            <li>右键点击会话 → "Delete"（或批量删除）
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>显示确认对话框 "Delete X session(s)?"
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>用户确认
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>标记会话为 deleted（deletedAt = Date.now()）
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>会话从列表消失
+                <ul>
+                    <li>↓</li>
+                </ul>
+            </li>
+            <li>Grace period (1秒)
+                <ul>
+                    <li>无新消息 → 永久删除</li>
+                    <li>有新消息 → 自动恢复会话</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2 id="5-安全与隐私">5. 安全与隐私</h2>
+
+        <h3 id="51-数据安全">5.1 数据安全</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>数据</th>
+                    <th>存储方式</th>
+                    <th>加密</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>API Keys</td>
+                    <td><code>settings.json</code> 明文</td>
+                    <td>❌ 未加密</td>
+                </tr>
+                <tr>
+                    <td>对话历史</td>
+                    <td>Gateway 远程存储</td>
+                    <td>✅ 传输加密（TLS）</td>
+                </tr>
+                <tr>
+                    <td>本地会话元数据</td>
+                    <td><code>sessions.json</code> 明文</td>
+                    <td>❌ 未加密</td>
+                </tr>
+                <tr>
+                    <td>用户设置</td>
+                    <td><code>settings.json</code> 明文</td>
+                    <td>❌ 未加密</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <blockquote>
+            <p><strong>Note:</strong> v1 版本未实现 Keychain 加密存储，文档中已明确标注为"本地文件存储"。</p>
+        </blockquote>
+
+        <h3 id="52-网络安全">5.2 网络安全</h3>
+        <ul>
+            <li>WebSocket 连接使用 <code>ws://</code>（本地）或 <code>wss://</code>（远程）</li>
+            <li>所有 Gateway RPC 调用通过 WebSocket 传输</li>
+            <li>IM 频道连接使用各平台官方 SDK</li>
+        </ul>
+
+        <h3 id="53-权限管理">5.3 权限管理</h3>
+        <ul>
+            <li>macOS 屏幕录制权限（未实现，v2 预留）</li>
+            <li>macOS 日历访问权限（未实现，v2 预留）</li>
+            <li>文件系统访问权限（仅读写用户指定路径）</li>
+        </ul>
+
+        <h2 id="6-已知限制">6. 已知限制</h2>
+
+        <h3 id="61-功能限制">6.1 功能限制</h3>
+        <ul>
+            <li>❌ 无本地数据库（会话数据依赖 Gateway）</li>
+            <li>❌ 无 proactive 主动智能</li>
+            <li>❌ 无 Tray / Pill 系统级交互</li>
+            <li>❌ 无日程规划与记忆系统</li>
+            <li>❌ 无自动模型路由</li>
+            <li>❌ Terminal 面板为空壳（未实现）</li>
+            <li>❌ Preview 面板为空壳（未实现）</li>
+        </ul>
+
+        <h3 id="62-平台限制">6.2 平台限制</h3>
+        <ul>
+            <li>❌ 仅支持 macOS arm64</li>
+            <li>❌ 未测试 Windows / Linux</li>
+        </ul>
+
+        <h3 id="63-性能限制">6.3 性能限制</h3>
+        <ul>
+            <li>大文件读取可能卡顿（>10MB）</li>
+            <li>20+ 会话时搜索性能下降（无索引优化）</li>
+        </ul>
+
+        <h2 id="7-质量保证">7. 质量保证</h2>
+
+        <h3 id="71-测试覆盖">7.1 测试覆盖</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>模块</th>
+                    <th>单元测试</th>
+                    <th>集成测试</th>
+                    <th>E2E 测试</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chat</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                </tr>
+                <tr>
+                    <td>Session</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                </tr>
+                <tr>
+                    <td>Gateway</td>
+                    <td>❌</td>
+                    <td>✅（手动）</td>
+                    <td>❌</td>
+                </tr>
+                <tr>
+                    <td>Settings</td>
+                    <td>❌</td>
+                    <td>✅（手动）</td>
+                    <td>❌</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <blockquote>
+            <p><strong>Note:</strong> v1 版本无自动化测试，依赖手动回归。</p>
+        </blockquote>
+
+        <h3 id="72-已修复-bug">7.2 已修复 Bug</h3>
+        <p>详见 git commit history（0d4c791 → v0.1.0）：</p>
+        <ul>
+            <li>✅ IM session routing（dmScope）</li>
+            <li>✅ Delete/revive timing</li>
+            <li>✅ WebSocket reconnect stability</li>
+            <li>✅ 输入框自动扩展</li>
+            <li>✅ 外部链接覆盖主窗口问题</li>
+            <li>✅ Artifacts 文件识别</li>
+            <li>✅ 配置隔离</li>
+            <li>✅ MiniMax 支持</li>
+            <li>✅ 飞书 plugin loading</li>
+        </ul>
+
+        <h2 id="8-发布历史">8. 发布历史</h2>
+
+        <h3 id="v010--2026-02-20-首版发布">v0.1.0 — 2026-02-20（首版发布）</h3>
+
+        <p><strong>Milestone: AutoClaw v1 首版发布</strong></p>
+
+        <h4>已完成功能</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>模块</th>
+                    <th>状态</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chat 对话</td>
+                    <td>✅ Done</td>
+                    <td>ChatPanel + MessageItem + 流式响应 + tool calling</td>
+                </tr>
+                <tr>
+                    <td>Session 管理</td>
+                    <td>✅ Done</td>
+                    <td>SessionSidebar + sessionStore，多会话切换</td>
+                </tr>
+                <tr>
+                    <td>Gateway 连接</td>
+                    <td>✅ Done</td>
+                    <td>WebSocket 完整握手 + 自动重连 + 状态同步</td>
+                </tr>
+                <tr>
+                    <td>模型选择</td>
+                    <td>✅ Done</td>
+                    <td>catalog + primary，支持运行时切换</td>
+                </tr>
+                <tr>
+                    <td>多服务商支持</td>
+                    <td>✅ Done</td>
+                    <td>智谱、MiniMax、Anthropic、OpenAI + 自定义</td>
+                </tr>
+                <tr>
+                    <td>预置模型</td>
+                    <td>✅ Done</td>
+                    <td>GLM-4.7 / GLM-4.7-Flash / GLM-5 / MiniMax-M2.5</td>
+                </tr>
+                <tr>
+                    <td>Settings</td>
+                    <td>✅ Done</td>
+                    <td>7 tab 设置面板（General / Models & API / Integrations 等）</td>
+                </tr>
+                <tr>
+                    <td>Skills 管理</td>
+                    <td>✅ Done</td>
+                    <td>ContextSidebar 内 skills 列表 + 启停</td>
+                </tr>
+                <tr>
+                    <td>MCP 管理</td>
+                    <td>✅ Done</td>
+                    <td>SettingsView 内 MCP server 配置 + 状态</td>
+                </tr>
+                <tr>
+                    <td>Gateway Manager</td>
+                    <td>✅ Done</td>
+                    <td>内置 openclaw gateway 子进程管理，自动启停</td>
+                </tr>
+                <tr>
+                    <td>构建发布</td>
+                    <td>✅ Done</td>
+                    <td>electron-builder macOS arm64 DMG + ZIP，代码签名</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="v011--2026-02-21">v0.1.1 — 2026-02-21</h3>
+        <ul>
+            <li>✅ 配置隔离（每个用户独立的 settings.json）</li>
+            <li>✅ MiniMax 支持</li>
+        </ul>
+
+        <h3 id="v012--2026-02-24">v0.1.2 — 2026-02-24</h3>
+        <ul>
+            <li>✅ 修复点击外部链接覆盖主窗口问题</li>
+            <li>✅ 修复 Write tool 产生的文件不在 Artifacts 显示</li>
+            <li>✅ Artifacts 文件识别改为宽松匹配</li>
+        </ul>
+
+        <h3 id="v014--2026-02-27">v0.1.4 — 2026-02-27</h3>
+        <ul>
+            <li>✅ IM 频道管理</li>
+            <li>✅ 跨频道消息</li>
+            <li>✅ Token 统计</li>
+            <li>✅ 会话 dmScope 修复</li>
+            <li>✅ WebSocket 重连稳定性提升</li>
+        </ul>
+
+        <h2 id="9-设计决策记录-adr">9. 设计决策记录 (ADR)</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>决策</th>
+                    <th>选择</th>
+                    <th>理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>状态管理</td>
+                    <td>Zustand</td>
+                    <td>轻量、无样板代码、DevTools 支持</td>
+                </tr>
+                <tr>
+                    <td>UI 框架</td>
+                    <td>Ant Design</td>
+                    <td>组件丰富、文档完善、中文友好</td>
+                </tr>
+                <tr>
+                    <td>构建工具</td>
+                    <td>electron-vite</td>
+                    <td>Vite 生态、HMR 支持好</td>
+                </tr>
+                <tr>
+                    <td>WebSocket</td>
+                    <td>ws（npm）</td>
+                    <td>原生实现、性能最优</td>
+                </tr>
+                <tr>
+                    <td>进程间通信</td>
+                    <td>Electron IPC + contextBridge</td>
+                    <td>安全、标准化</td>
+                </tr>
+                <tr>
+                    <td>主题系统</td>
+                    <td>CSS 变量</td>
+                    <td>运行时切换、性能高</td>
+                </tr>
+                <tr>
+                    <td>会话存储</td>
+                    <td>本地 JSON 文件</td>
+                    <td>简单、可读、可手动编辑</td>
+                </tr>
+                <tr>
+                    <td>Gateway 连接</td>
+                    <td>WebSocket</td>
+                    <td>实时双向通信、支持流式</td>
+                </tr>
+                <tr>
+                    <td>文件导出</td>
+                    <td>JSON + Markdown</td>
+                    <td>JSON 机器可读，Markdown 人类可读</td>
+                </tr>
+                <tr>
+                    <td>图标库</td>
+                    <td>lucide-react</td>
+                    <td>Tree-shakable、设计一致</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="10-后续规划-v2">10. 后续规划 (v2)</h2>
+        <p>详见 <code>docs/DEVELOPMENT_PLAN.md</code>：</p>
+        <div class="feature-list">
+            <div class="feature-card">
+                <h4>📅 Daily Planner</h4>
+                <p>日程规划</p>
+            </div>
+            <div class="feature-card">
+                <h4>🧠 MemOS</h4>
+                <p>语义记忆</p>
+            </div>
+            <div class="feature-card">
+                <h4>💰 Usage Dashboard</h4>
+                <p>用量统计面板</p>
+            </div>
+            <div class="feature-card">
+                <h4>💊 Pill</h4>
+                <p>浮动通知系统</p>
+            </div>
+            <div class="feature-card">
+                <h4>🎯 Proactive</h4>
+                <p>主动智能</p>
+            </div>
+            <div class="feature-card">
+                <h4>🔄 Auto-Router</h4>
+                <p>智能模型路由</p>
+            </div>
+            <div class="feature-card">
+                <h4>🖥️ Tray</h4>
+                <p>系统托盘集成</p>
+            </div>
+            <div class="feature-card">
+                <h4>🖼️ Screen Vision</h4>
+                <p>屏幕分析</p>
+            </div>
+            <div class="feature-card">
+                <h4>📁 Filesystem Watcher</h4>
+                <p>文件监听</p>
+            </div>
+        </div>
+
+        <h2 id="11-附录">11. 附录</h2>
+
+        <h3 id="111-键盘快捷键">11.1 键盘快捷键</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>快捷键</th>
+                    <th>功能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Cmd+N</code></td>
+                    <td>新建会话</td>
+                </tr>
+                <tr>
+                    <td><code>Cmd+,</code></td>
+                    <td>打开/关闭设置</td>
+                </tr>
+                <tr>
+                    <td><code>Esc</code></td>
+                    <td>关闭设置 / 停止流式输出</td>
+                </tr>
+                <tr>
+                    <td><code>Enter</code></td>
+                    <td>发送消息</td>
+                </tr>
+                <tr>
+                    <td><code>Shift+Enter</code></td>
+                    <td>换行</td>
+                </tr>
+                <tr>
+                    <td><code>Cmd+K</code></td>
+                    <td>（预留）命令面板</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="112-常用-rpc-列表">11.2 常用 RPC 列表</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>RPC</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>chat.send</code></td>
+                    <td>发送消息</td>
+                </tr>
+                <tr>
+                    <td><code>chat.stop</code></td>
+                    <td>停止生成</td>
+                </tr>
+                <tr>
+                    <td><code>chat.history</code></td>
+                    <td>获取历史消息</td>
+                </tr>
+                <tr>
+                    <td><code>sessions.list</code></td>
+                    <td>获取会话列表</td>
+                </tr>
+                <tr>
+                    <td><code>sessions.create</code></td>
+                    <td>创建新会话</td>
+                </tr>
+                <tr>
+                    <td><code>sessions.delete</code></td>
+                    <td>删除会话</td>
+                </tr>
+                <tr>
+                    <td><code>skills.list</code></td>
+                    <td>获取 skills 列表</td>
+                </tr>
+                <tr>
+                    <td><code>skills.toggle</code></td>
+                    <td>启用/禁用 skill</td>
+                </tr>
+                <tr>
+                    <td><code>mcp.list</code></td>
+                    <td>获取 MCP servers 列表</td>
+                </tr>
+                <tr>
+                    <td><code>mcp.add</code></td>
+                    <td>添加 MCP server</td>
+                </tr>
+                <tr>
+                    <td><code>mcp.remove</code></td>
+                    <td>删除 MCP server</td>
+                </tr>
+                <tr>
+                    <td><code>config.patch</code></td>
+                    <td>更新配置</td>
+                </tr>
+                <tr>
+                    <td><code>imChannels.list</code></td>
+                    <td>获取 IM 频道列表</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="113-文件路径">11.3 文件路径</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>文件</th>
+                    <th>路径</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>应用数据</td>
+                    <td><code>~/Library/Application Support/autoclaw/</code></td>
+                </tr>
+                <tr>
+                    <td>Gateway 配置</td>
+                    <td><code>~/.openclaw/config.json</code></td>
+                </tr>
+                <tr>
+                    <td>本地会话</td>
+                    <td><code>~/.openclaw-autoclaw/sessions.json</code></td>
+                </tr>
+                <tr>
+                    <td>用户设置</td>
+                    <td><code>~/.openclaw-autoclaw/settings.json</code></td>
+                </tr>
+                <tr>
+                    <td>Skills 配置</td>
+                    <td><code>.opencode/config.json</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e8e8e8; color: #999; font-size: 14px; text-align: center;">
+            <p>文档结束 — CoworkDesk v1 PRD</p>
+        </footer>
+    </div>
+</body>
+</html>
